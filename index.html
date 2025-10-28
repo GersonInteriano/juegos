@@ -263,7 +263,7 @@
         let gamePaused = false;
         let gameLoop;
         let lastRenderTime = 0;
-        const gameSpeed = 15;
+        const gameSpeed = 8; // VELOCIDAD REDUCIDA (antes era 15)
         
         // Variables para movimiento fluido
         let snakeX = 0;
@@ -274,7 +274,7 @@
         // Variables para controles táctiles
         let touchStartX = 0;
         let touchStartY = 0;
-        let minSwipeDistance = 30; // Distancia mínima para considerar un deslizamiento
+        let minSwipeDistance = 30;
 
         // Ajustar tamaño del canvas
         function resizeCanvas() {
@@ -413,8 +413,9 @@
             
             currentDirection = { ...nextDirection };
             
-            snakeX += currentDirection.dx * (deltaTime / (1000 / gameSpeed)) * 0.8;
-            snakeY += currentDirection.dy * (deltaTime / (1000 / gameSpeed)) * 0.8;
+            // MOVIMIENTO MÁS LENTO - reducido el multiplicador de velocidad
+            snakeX += currentDirection.dx * (deltaTime / (1000 / gameSpeed)) * 0.5;
+            snakeY += currentDirection.dy * (deltaTime / (1000 / gameSpeed)) * 0.5;
             
             const gridX = Math.round(snakeX);
             const gridY = Math.round(snakeY);
